@@ -21,6 +21,10 @@ public class CarregaProdutos extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         String produto = req.getParameter("produto");
+        String listaProdutos = "";
+        
+        req.setAttribute("listaDeProdutos", listaProdutos);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
         
     }
     

@@ -21,10 +21,11 @@
         	<input type="submit" value="Adicionar">
 
         </form>
-        
-        <c:forEach items="" var="produto">
-            <p>${produto}</p>
-        </c:forEach>
+        <c:if test="${requestScope.listaDeProdutos != null}">
+            <c:forEach items="" var="produto">
+                <p>${produto}</p>
+            </c:forEach>
+            </c:if>
         
     </body>
 </html>
