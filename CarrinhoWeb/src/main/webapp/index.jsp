@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form>
+        <form action="init" method="get">
         	
         	<label>Digite o nome do produto: </label>
                 <input type="text" name="produto">
@@ -21,11 +21,11 @@
         	<input type="submit" value="Adicionar">
 
         </form>
-        <c:if test="${requestScope.listaDeProdutos != null}">
-            <c:forEach items="" var="produto">
+        <%--<c:if test="${requestScope.listaDeProdutos != null}">--%>
+        <c:forEach items="${sessionScope.listaDeProdutos}" var="produto">
                 <p>${produto}</p>
             </c:forEach>
-            </c:if>
+            <%--</c:if>--%>
         
     </body>
 </html>
