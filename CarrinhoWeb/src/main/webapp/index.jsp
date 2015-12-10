@@ -16,7 +16,7 @@
         <form>
         	
         	<label>Digite o nome do produto: </label>
-        	<input type="text">
+                <input type="text" name="produto">
         	
         	<input type="submit" value="Adicionar">
 
