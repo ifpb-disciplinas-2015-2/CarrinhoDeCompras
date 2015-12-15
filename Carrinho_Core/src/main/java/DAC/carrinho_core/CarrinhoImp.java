@@ -6,6 +6,7 @@
 package DAC.carrinho_core;
 
 import DAC.carrinho_interface.Carrinho;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Remote;
@@ -18,7 +19,7 @@ import javax.ejb.Stateful;
  */
 @Stateful
 @Remote(Carrinho.class)
-public class CarrinhoImp implements Carrinho {
+public class CarrinhoImp implements Carrinho, Serializable {
 
     private List<String> carrinho;
 
