@@ -7,8 +7,6 @@ package com.mycompany.carrinho_jse;
 
 import DAC.carrinho_interface.Carrinho;
 import DAC.descktop_api.serviceLocator;
-import java.awt.event.ItemListener;
-import java.util.List;
 
 /**
  *
@@ -17,7 +15,6 @@ import java.util.List;
 public class Principal extends javax.swing.JFrame {
 
     private final serviceLocator seridor = new serviceLocator();
-    private List<String> lista;
     private Carrinho carrinho;
 
     /**
@@ -26,7 +23,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         caregarEJB();
-        jComboBox1.addItemListener((ItemListener) lista);
+        jList1.setListData(carrinho.listarItens().toArray());
 //        String recurso = "java:global/Carrinho_Core/CarrinhoImp";
 //        carrinho = seridor.lookup(recurso, Carrinho.class);
     }
@@ -47,9 +44,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Carrinho de compras");
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Item:");
 
@@ -81,8 +80,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,7 +87,6 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -117,13 +113,12 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -131,8 +126,8 @@ public class Principal extends javax.swing.JFrame {
 //        String recurso = "java:global/Carrinho_Core/CarrinhoImp";
 //        carrinho = seridor.lookup(recurso, Carrinho.class);
         carrinho.addItem(jTextField1.getText());
-        lista = carrinho.listarItens();
         jTextField1.setText("");
+        jList1.setListData(carrinho.listarItens().toArray());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -141,6 +136,7 @@ public class Principal extends javax.swing.JFrame {
 //        carrinho = seridor.lookup(recurso, Carrinho.class);
         carrinho.finalizar();
         caregarEJB();
+        jList1.setListData(carrinho.listarItens().toArray());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -148,7 +144,7 @@ public class Principal extends javax.swing.JFrame {
 //        String recurso = "java:global/Carrinho_Core/CarrinhoImp";
 //        carrinho = seridor.lookup(recurso, Carrinho.class);
         carrinho.remItem("" + jList1.getSelectedValue());
-        lista = carrinho.listarItens();
+        jList1.setListData(carrinho.listarItens().toArray());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void caregarEJB() {
@@ -194,7 +190,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
