@@ -9,15 +9,18 @@ import DAC.carrinho_interface.Carrinho;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.ejb.Remote;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
+import javax.ejb.StatefulTimeout;
 
 /**
  *
  * @author Antonio Junior
  */
 @Stateful
+@StatefulTimeout(unit = TimeUnit.SECONDS, value = 20)
 @Remote(Carrinho.class)
 public class CarrinhoImp implements Carrinho, Serializable {
 
